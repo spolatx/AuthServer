@@ -24,6 +24,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SharedLibrary.Services;
+using FluentValidation.AspNetCore;
+using SharedLibrary.Extensions;
 
 namespace AuthServer.API
 {
@@ -101,12 +103,11 @@ namespace AuthServer.API
                 };
                 #endregion
             });
-
-
-
-
-
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation(options =>
+            {
+                options.RegisterValidatorsFromAssemblyContaining<Startup>();
+            });
+            services.UseCustomValidationResponse();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuthServer.API", Version = "v1" });
@@ -122,7 +123,12 @@ namespace AuthServer.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AuthServer.API v1"));
             }
+            else
+            {
+                
+            }
             //sýralama onemli
+            app.UseCustomException();
             app.UseHttpsRedirection();
 
             app.UseRouting();

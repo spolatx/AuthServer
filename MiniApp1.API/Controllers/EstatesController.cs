@@ -11,6 +11,7 @@ namespace MiniApp1.API.Controllers
     [ApiController]
     public class EstatesController : ControllerBase
     {
+        [HttpGet]   
         public IActionResult GetEstate()
         {
             var userName = HttpContext.User.Identity.Name;
