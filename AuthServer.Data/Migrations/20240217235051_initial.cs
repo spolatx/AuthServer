@@ -1,10 +1,14 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace AuthServer.Data.Migrations
 {
+    /// <inheritdoc />
     public partial class initial : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -55,8 +59,7 @@ namespace AuthServer.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(199)", maxLength: 199, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
-                    Stock = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -222,6 +225,7 @@ namespace AuthServer.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

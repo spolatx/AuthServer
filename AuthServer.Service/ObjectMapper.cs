@@ -15,6 +15,7 @@ namespace AuthServer.Service
         {
             var config = new MapperConfiguration(cfg =>
             {
+                //cfg.Internal().MethodMappingEnabled = false;
                 cfg.AddProfile<DtoMapper>();
             });
             return config.CreateMapper();

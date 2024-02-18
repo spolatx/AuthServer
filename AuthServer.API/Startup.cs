@@ -40,6 +40,7 @@ namespace AuthServer.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+<<<<<<< Updated upstream
         public void ConfigureServices(IServiceCollection services)
         {
             //DI Register
@@ -112,17 +113,26 @@ namespace AuthServer.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuthServer.API", Version = "v1" });
             });
         }
+=======
+        //public void ConfigureServices(IServiceCollection services)
+        //{
+        //}
+>>>>>>> Stashed changes
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AuthServer.API v1"));
             }
             //sýralama onemli
+<<<<<<< Updated upstream
+=======
+           
+>>>>>>> Stashed changes
             app.UseHttpsRedirection();
 
             app.UseRouting();
